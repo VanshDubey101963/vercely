@@ -4,6 +4,5 @@
     { "path": "./services/request" },
     { "path": "./services/deployment" },
     { "path": "./services/upload" },
-    { "path": "./packages/common" }
   ]
 }
