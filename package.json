@@ -4,7 +4,11 @@
   "description": "An react.js application deployment Paas(platform as a service)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc -b",
+    "dev-deployment": "npx tsc -b services/deployment && node services/deployment/dist/services/deployment/src/index.js",
+    "dev-upload": "npx tsc -b services/upload && node services/upload/dist/services/upload/src/index.js",
+    "dev-request": "npx tsc -b services/request && node services/request/dist/services/request/src/index.js"
   },
   "repository": {
     "type": "git",
