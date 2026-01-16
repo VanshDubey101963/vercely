@@ -1,10 +1,12 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "composite": true
+    "rootDir": "../../../vercely",
+    "outDir": "dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022"
   },
-  "include": ["src"],
-  "references": [{ "path": "../../packages/common" }]
+  "include": ["../../../vercely"],
+  "exclude": ["../../../vercely/services/request","../../../vercely/services/upload", "../../../vercely/vercely-ui"]
 }
+
