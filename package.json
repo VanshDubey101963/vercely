@@ -32,6 +32,7 @@
     "@aws-sdk/client-s3": "^3.970.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "redis": "^5.10.0",
     "simple-git": "^3.30.0"
   }
 }
