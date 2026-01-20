@@ -1,9 +1,9 @@
 import "dotenv/config";
 import { execa } from "execa";
 import fs from "fs/promises";
+import fsync from "fs"
 import {
   downloadS3Folder,
-  makePrefixPublic,
   uploadFolderToS3,
 } from "../../../packages/common/aws-utils.js";
 import redisClient from "../../../packages/common/redis-broker.js";
@@ -25,23 +25,26 @@ async function main() {
 
       // Install npm packages and build the downloaded react project
       const cwd = `output/${jobId}`;
-      const job1 = await execa("npm", ["install"], { cwd });
-      const job2 = await execa("npm", ["run", "build"], { cwd });
+      await execa("npm", ["install"], { cwd });
+      await execa("npm", ["run", "build"], { cwd });
       
       // Upload build (dist) folder to s3
       await uploadFolderToS3("test", `output/${jobId}/dist`, `${jobId}/dist`);
-
-      // Make it publicly accessible
-      await makePrefixPublic("test", jobId.toString())
     
       // Change status to deployed
       await redisClient.hSet("status", jobId.toString(), "deployed");
 
       // Cleanup the output folder
-      await fs.rm("output", { recursive: true });
+      if (fsync.existsSync("output")) {  
+        await fs.rm("output", { recursive: true });
+      }
+      
     } catch (err: unknown) {
       console.log(err)
-      await fs.rm("output", { recursive: true });
+      
+      if (fsync.existsSync("output")) {  
+        await fs.rm("output", { recursive: true });
+      }
     }
   }  
 }
