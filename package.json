@@ -23,15 +23,20 @@
   },
   "homepage": "https://github.com/VanshDubey101963/vercely#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/mime": "^3.0.4",
     "@types/node": "^25.0.8",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.970.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
+    "execa": "^9.6.1",
     "express": "^5.2.1",
+    "mime": "^4.1.0",
     "redis": "^5.10.0",
     "simple-git": "^3.30.0"
   }
