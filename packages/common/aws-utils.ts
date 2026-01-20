@@ -23,25 +23,6 @@ async function getFiles(dir: string, base = dir): Promise<string[]> {
   return files;
 }
 
-export async function makePrefixPublic(bucketName: string, prefix: string) {
-  const policy = {
-    Version: "2012-10-17",
-    Statement: [
-      {
-        Effect: "Allow",
-        Principal: "*",
-        Action: ["s3:GetObject"],
-        Resource: [`arn:aws:s3:::${bucketName}/${prefix}/dist/*`, `arn:aws:s3:::${bucketName}/${prefix}/dist/assets/*`],
-      },
-    ],
-  };
-  
-  await s3Client.putBucketPolicy({
-    Bucket: bucketName,
-    Policy: JSON.stringify(policy),
-  });
-}
-
 export function uploadFolderToS3(
   bucket: string,
   localDir: string,
